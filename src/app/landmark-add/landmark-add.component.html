@@ -1,0 +1,72 @@
+
+
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Add Landmark</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-Landmark"
+                            routerLink="/dashboard/home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li><a class="parent-Landmark" href="#">Landmarks</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Add Landmark</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                  <form [formGroup]="addLandmarkForm" (ngSubmit)="onSubmit()" method="post" style="width: 100%;">
+                       
+                    <div class="card-head">
+                        <header>Add Landmark</header>
+                        <span class="float-right px-2"><a routerLink="/dashboard/landmarks" class="">All Landmarks</a></span>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-12 p-t-20">
+                            <div
+                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <label class="text-muted">Landmark</label>
+                                <input class="mdl-textfield__input" type="text" formControlName="landmark_name" >
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-t-20">
+                           <label class="" style="color: #bfbebe !important;">Cities</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" formControlName="city_id" (change)="onChangeCity($event.target)">
+                                <option value=""> <span style="color: #bfbebe !important;">Select one</span> </option>
+                                <option [value]="city.city_id" *ngFor="let city of cities.data">{{ city.city_name }}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 p-t-20">
+                        <label class="" style="color: #bfbebe !important;">Areas</label>
+                           <select class="form-control border-top-0 border-right-0 border-left-0" id="areaname" formControlName="area_id" >
+                                  <option value="">Select one</option>
+                                  <option [value]="area.area_id" *ngFor="let area of areas.data">{{ area.area_name }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-lg-12 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                                <textarea class="mdl-textfield__input" rows="4" formControlName="description"></textarea>
+                                <label class="mdl-textfield__label" for="text7">Landmark Description</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" [disabled]="!addLandmarkForm.valid">Add</button>
+                            <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                        </div>
+                    </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page content -->

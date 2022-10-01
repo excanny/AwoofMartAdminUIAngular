@@ -1,0 +1,107 @@
+
+
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Add Item</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                            routerLink="/dashboard/home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li><a class="parent-item" routerLink="/dashboard/items">Items</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Add Item</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                   <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()" style="width: 100%;" enctype="multipart/form-data">
+                     
+                    <div class="card-head">
+                        <header>Add Item</header>
+                        <span class="float-right px-2"><a routerLink="/dashboard/items" class="">All Items</a></span>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-lg-6 p-t-20">
+                            <div
+                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <label class="text-muted">Item Name:</label>
+                                <input class="mdl-textfield__input" type="text" formControlName="item_name" required>
+                                
+                            </div>
+                        </div>
+                     
+                        <div class="col-lg-6 p-t-20">
+                        <label class="" style="color: #bfbebe !important;">Market Domain:</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" formControlName="domain_id" required>
+                                <option value="" > <span style="color: #bfbebe !important;">Select one</span> </option>
+                                <option [value]="domain.domain_id" *ngFor="let domain of domains.data">{{ domain.domain_name }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-lg-4 p-t-20">
+                            <label class="" style="color: #bfbebe !important;">Parent Category:</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" formControlName="parent_category_id" (change)="onChangeParentCategory($event.target)" required>
+                                <option value=""> <span>Select one</span> </option>
+                                <option [value]="category.id" *ngFor="let category of parentcategories.data">{{ category.category_name.charAt(0).toUpperCase() + category.category_name.slice(1) }}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 p-t-20">
+                            <label class="" style="color: #bfbebe !important;">Sub Category:</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" id="subcategory" formControlName="sub_category_id" (change)="onChangeSubCategory($event.target)" required>
+                                <option value=null> <span>Select one</span> </option>
+                                <option [value]="category.id" *ngFor="let category of subcategories.data">{{ category.category_name.charAt(0).toUpperCase() + category.category_name.slice(1) }}</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 p-t-20">
+                            <label class="" style="color: #bfbebe !important;">Child Category:</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" formControlName="child_category_id" required>
+                                <option value=null> <span>Select one</span> </option>
+                                <option [value]="category.id" *ngFor="let category of childcategories.data">{{ category.category_name.charAt(0).toUpperCase() + category.category_name.slice(1) }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-lg-6 p-t-20">
+                            <div
+                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" type="text" formControlName="sku_name" required>
+                                <label class="mdl-textfield__label">SKU Name:</label>
+                            </div>
+                            <div
+                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <input class="mdl-textfield__input" type="number" formControlName="sku_weight" step="0.01" required>
+                                <label class="mdl-textfield__label">SKU Weight:</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                                <textarea class="mdl-textfield__input" rows="4" formControlName="description"></textarea>
+                                <label class="mdl-textfield__label" for="text7">Description:</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 p-t-20">
+                             <div class="form-group">
+                              <label style="color: #bfbebe !important;">Item Image: <small class="text-danger">(Only image dimensions <strong>285 x 285 pixels</strong> allowed)</small></label>
+                             <input class="input-id" formControlName="item_image_name" (change)="onFileChange($event)" type="file" data-browse-on-zone-click="true" data-show-upload="false" required>
+                          </div>
+                        </div>
+                    
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" [disabled]="!addItemForm.valid">Add</button>
+                            <button type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

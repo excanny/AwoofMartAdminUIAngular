@@ -1,0 +1,99 @@
+
+
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left">
+                    <div class="page-title">Add Category</div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right">
+                    <li><i class="fa fa-home"></i>&nbsp;<a class="parent-Category"
+                            routerLink="/dashboard/home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li><a class="parent-item" routerLink="/dashboard/categories">Categories</a>&nbsp;<i class="fa fa-angle-right"></i>
+                    </li>
+                    <li class="active">Add Category</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                 <form [formGroup]="addCategoryForm" (ngSubmit)="onSubmit()" style="width: 100%;" >
+                   
+                    <div class="card-box">
+                    
+                    <div class="card-head">
+                        <header>Add Category</header>
+                        <span class="float-right px-2"><a routerLink="/dashboard/categories">All Categories</a></span>
+                    </div>
+                    
+                    <div class="card-body row">
+                        
+                        <div class="col-lg-12 p-t-20">
+                            <div
+                                class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                <label class="text-muted">Category Name</label>
+                                <input class="mdl-textfield__input" id="category_name" type="text" formControlName="category_name" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 p-t-20">
+                             <label for="email">Domain:</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" formControlName="domain_id" required>
+                                <option value="" style="color: #bfbebe !important;" *ngIf="domains.data.length > 0">Select one</option>
+                                <option [ngValue]="domain.domain_id" *ngFor="let domain of domains.data">{{ domain.domain_name }}</option>
+                                <option *ngIf="domains.data.length == 0">No domains added yet</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-lg-6 p-t-20">
+                             <label for="email">Parent Category:</label>
+                            <select class="form-control border-top-0 border-right-0 border-left-0" id="childcategory" formControlName="parent_id" required>
+                                <option value=null style="color: #bfbebe !important;">Select one</option>
+                                <option value="0">None</option>
+                                <option [ngValue]="category.id" *ngFor="let category of categories.data">{{ category.category_name }}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-lg-6 p-t-20">
+                           <div class="form-group">
+                              <label>Category Image: <small class="text-danger">(Only image dimensions <strong>285 x 285 pixels</strong> allowed)</small></label>
+                             <input class="input-id" formControlName="category_image_name" (change)="onFileChange($event)" type="file" data-browse-on-zone-click="true" data-show-upload="false">
+                          </div>
+                        </div>
+                        <div class="col-lg-6 p-t-20 ">
+                            <br>
+                             <div class="checkbox checkbox-icon-black">
+                                <input formControlName="allow_merchant_upload" type="checkbox">
+                                &nbsp; <label for="checkbox1">Allow Merchants to Upload Images In This Category
+                                </label>
+                             </div>
+                             
+                             <br>
+                            
+                        </div>
+                        <div class="col-lg-12 p-t-20">
+                            <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                                <label class="text-muted" for="text7">Description</label>
+                                <textarea class="mdl-textfield__input" rows="4" formControlName="description" required></textarea>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-12 p-t-20 text-center">
+                            <button type="submit"
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" [disabled]="!addCategoryForm.valid">Add</button>
+                            <button type="reset"
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                        </div>
+                       
+                    </div>
+                </div>
+				 </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end page content -->
