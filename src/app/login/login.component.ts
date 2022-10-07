@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
     //console.warn(this.loginForm.value);
       this.loading = true;
       this.authenticationService.adminlogin(this.loginForm.value).subscribe((data: any) => {
-        //this.router.navigate(['/dashboard/home']);
+        //this.router.navigate(['/#/dashboard/home']);
         //alert("hi");
         //console.log(data.admin.first_name);
         localStorage.setItem('access_token', data.access_token)
         localStorage.setItem('first_name', data.admin.first_name)
-        window.location.href = '/dashboard/home';
+        window.location.href = '/admin/#/dashboard/home';
         this.loading = true;
       });
   }

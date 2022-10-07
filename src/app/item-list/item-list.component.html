@@ -51,6 +51,7 @@
                                         <th> SKU Name </th>
                                         <th> SKU Weight </th>
                                         <th> Description </th>
+                                        <th>Item Image</th>
                                         <th> Action </th>
                                     </tr>
                                 </thead>
@@ -65,6 +66,7 @@
                                         <td class="left"> {{item.sku_name}}</td>
                                         <td class="left">{{item.sku_weight}} </td>
                                         <td class="left">{{item.description}} </td>
+                                        <td> <img src="{{item.uploaded_file_path}}" alt="" width="30%"></td>
                                         <td>
                                             <a
                                                 data-placement="bottom"
